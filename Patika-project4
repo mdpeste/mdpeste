@@ -1,1 +1,56 @@
+grd1: [[1,'a',['cat'],2],[[[3]],'dog'],4,5]
 
+output: [1,'a','cat',2,3,'dog',4,5]
+
+örneği için:
+
+    def alt_lis(altlst, byrk):
+        altl = []
+        for k in altlst:
+            if byrk == 0:
+                if type(k) == list:
+                    byrk = 1
+                    nk = len(k)
+                    for sy in range(nk):
+                        altl.append(k[sy])
+                else:    
+                    flatten.append(k)
+            else:
+                altl.append(k)
+        return (altl, byrk)
+    
+    flatten1 = []
+    flatten2 = []
+    flatten = []
+    for i in grd1:
+        dn = 0
+        byr = 0
+        if type(i) == list:
+            alt_l, byr = alt_lis(i, 0)
+            if byr == 1:
+                for b in alt_l:
+                    if type(b) == list:
+                        alt_l_, byr = alt_lis(b, 0)
+                        if byr == 1:
+                            for h in alt_l_:
+                                flatten2.append(h)
+                            print flatten2
+                    else:
+                        flatten.append(b)
+        else:
+            flatten.append(i)
+    print 'flatten', flatten     
+    
+-----------------------------------    
+grd2: [[1, 2], [3, 4], [5, 6, 7]]
+
+output: [[[7, 6, 5], [4, 3], [2, 1]]
+
+örneği için:
+
+grd2.reverse()
+
+for l in grd2:
+    if l == list:
+        l.reverse()
+print grd2
